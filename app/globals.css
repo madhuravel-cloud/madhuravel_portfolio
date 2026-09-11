@@ -1,0 +1,73 @@
+@import "tailwindcss";
+
+:root {
+  --bg: #050505;
+  --panel: #0b0b0d;
+  --text: #f5f5f5;
+  --muted: #92929a;
+  --line: rgba(255,255,255,.10);
+  --accent: #a3e635;
+}
+
+* { box-sizing: border-box; scroll-behavior: smooth; }
+html { background: var(--bg); }
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at 70% 0%, rgba(163,230,53,.10), transparent 26rem),
+    radial-gradient(circle at 0% 40%, rgba(255,255,255,.045), transparent 24rem),
+    var(--bg);
+  color: var(--text);
+  font-family: Arial, Helvetica, sans-serif;
+}
+::selection { background: var(--accent); color: #050505; }
+a { color: inherit; text-decoration: none; }
+
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+.noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E");
+}
+
+.glass {
+  background: linear-gradient(135deg, rgba(255,255,255,.065), rgba(255,255,255,.018));
+  border: 1px solid var(--line);
+  backdrop-filter: blur(18px);
+}
+
+.reveal { animation: reveal .8s cubic-bezier(.2,.8,.2,1) both; }
+.float { animation: float 5s ease-in-out infinite; }
+.pulse-dot { animation: pulseDot 2s ease-in-out infinite; }
+
+@keyframes reveal {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes float {
+  0%,100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(.5deg); }
+}
+@keyframes pulseDot {
+  0%,100% { box-shadow: 0 0 0 0 rgba(163,230,53,.45); }
+  50% { box-shadow: 0 0 0 7px rgba(163,230,53,0); }
+}
+
+.card-hover {
+  transition: transform .3s ease, border-color .3s ease, background .3s ease;
+}
+.card-hover:hover {
+  transform: translateY(-5px);
+  border-color: rgba(163,230,53,.35);
+  background: linear-gradient(135deg, rgba(163,230,53,.08), rgba(255,255,255,.025));
+}
+
+.number {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -.06em;
+}
